@@ -1303,22 +1303,22 @@ void EDCircles::JoinCircles()
 	// Sort the circles wrt their radius
 	sortCircle(circles2, noCircles2);
 
-	int noCircles = noCircles2;
+	int noCircles_ = noCircles2;
 	Circle *circles = circles2;
 
-	for (int i = 0; i<noCircles; i++) {
+	for (int i = 0; i<noCircles_; i++) {
 		if (circles[i].isEllipse) {
 			ComputeEllipseCenterAndAxisLengths(&circles[i].eq, &circles[i].xc, &circles[i].yc, &circles[i].majorAxisLength, &circles[i].minorAxisLength);
 		} //end-if
 	} //end-for
 
-	bool *taken = new bool[noCircles];
-	for (int i = 0; i<noCircles; i++) taken[i] = false;
+	bool *taken = new bool[noCircles_];
+	for (int i = 0; i<noCircles_; i++) taken[i] = false;
 
-	int *candidateCircles = new int[noCircles];
+	int *candidateCircles = new int[noCircles_];
 	int noCandidateCircles;
 
-	for (int i = 0; i<noCircles; i++) {
+	for (int i = 0; i<noCircles_; i++) {
 		if (taken[i]) continue;
 
 		// Current arc
@@ -1337,7 +1337,7 @@ void EDCircles::JoinCircles()
 		  // Find other circles to join with
 		noCandidateCircles = 0;
 
-		for (int j = i + 1; j<noCircles; j++) {
+		for (int j = i + 1; j<noCircles_; j++) {
 			if (taken[j]) continue;
 
 #define JOINED_SHORT_ARC_ERROR_THRESHOLD  2 // 2.5
